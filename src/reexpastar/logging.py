@@ -1,7 +1,9 @@
-
 from __future__ import annotations
-import logging, sys, json as _json
+import logging
+import sys
+import json as _json
 from typing import Optional
+
 
 def get_logger(name: str = "reexpastar", level: int = logging.INFO, json: bool = False) -> logging.Logger:
     logger = logging.getLogger(name)
@@ -22,6 +24,7 @@ def get_logger(name: str = "reexpastar", level: int = logging.INFO, json: bool =
                 return _json.dumps(data, ensure_ascii=False)
         handler.setFormatter(JsonFormatter())
     else:
-        handler.setFormatter(logging.Formatter("%(levelname)s | %(name)s | %(message)s"))
+        handler.setFormatter(logging.Formatter(
+            "%(levelname)s | %(name)s | %(message)s"))
     logger.addHandler(handler)
     return logger
