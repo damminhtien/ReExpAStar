@@ -1,4 +1,3 @@
-
 # ReExpAStar - Weighted A* with Conditional Re-expansion (CR), NR, AR & ARA*
 
 [![CI](https://github.com/damminhtien/reexpastar/actions/workflows/ci.yml/badge.svg)](https://github.com/damminhtien/reexpastar/actions)

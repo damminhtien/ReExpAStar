@@ -1,11 +1,10 @@
-
 # Contributing
 
 Thanks for your interest!
 
 ## Dev setup
 ```bash
-git clone https://github.com/yourname/reexpastar.git
+git clone https://github.com/damminhtien/reexpastar.git
 cd reexpastar
 pip install -e .[dev,plot]
 pre-commit install

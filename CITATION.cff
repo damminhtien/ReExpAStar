@@ -1,10 +1,9 @@
-
 cff-version: 1.2.0
 title: "ReExpAStar: Weighted A* with Conditional Re-expansion (CR), NR, AR & ARA*"
 authors:
   - family-names: "Dam"
     given-names: "Tien Minh"
 version: "0.1.0"
-date-released: "2025-11-06"
+date-released: "2023-11-06"
 repository-code: "https://github.com/damminhtien/reexpastar"
 license: "MIT"
