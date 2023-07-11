@@ -1,0 +1,10 @@
+
+site_name: ReExpAStar
+nav:
+  - Home: index.md
+  - Guide:
+      - Quickstart: quickstart.md
+      - Algorithms: algorithms.md
+      - Benchmarks: benchmarks.md
+theme:
+  name: mkdocs

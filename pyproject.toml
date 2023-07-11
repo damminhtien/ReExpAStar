@@ -1,0 +1,58 @@
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "reexpastar"
+version = "0.1.0"
+description = "Weighted A* variants with conditional re-expansion (CR), NR, AR, and ARA*; with benchmarks & scenarios."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.9"
+authors = [{ name = "Tien Minh Dam" }]
+keywords = ["search", "path-planning", "A*", "ARA*", "heuristics", "benchmark"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-cov", "mypy", "ruff", "black", "pre-commit"]
+plot = ["matplotlib"]
+
+[project.urls]
+Homepage = "https://github.com/damminhtien/reexpastar"
+Issues = "https://github.com/damminhtien/reexpastar/issues"
+
+[project.scripts]
+reexpastar-compare = "reexpastar.cli.compare:main"
+reexpastar-ablate = "reexpastar.cli.ablate:main"
+reexpastar-benchmark = "reexpastar.cli.benchmark:main"
+reexpastar-benchmark-par = "reexpastar.cli.benchmark_parallel:main"
+reexpastar-plot = "reexpastar.cli.plot_results:main"
+reexpastar-profile = "reexpastar.cli.profile_search:main"
+
+[tool.black]
+line-length = 100
+target-version = ["py39"]
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I", "W"]
+ignore = ["E501"]  # let black handle line length
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+python_version = "3.9"
+ignore_missing_imports = true
+strict = false
+warn_unused_ignores = true
+
+[tool.pytest.ini_options]
+addopts = "-ra -q"
