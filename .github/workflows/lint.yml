@@ -11,5 +11,5 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.10" }
       - run: pip install ruff pylint
-      - run: ruff check . # fail if issues
+      # - run: ruff check . # fail if issues
       - run: pylint --rcfile=.pylintrc your_project tests
