@@ -20,7 +20,7 @@ classifiers = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest", "pytest-cov", "mypy", "black", "pre-commit"]
+dev = ["pytest", "pytest-cov", "mypy", "pre-commit"]
 plot = ["matplotlib"]
 
 [project.urls]
@@ -34,10 +34,6 @@ reexpastar-benchmark = "reexpastar.cli.benchmark:main"
 reexpastar-benchmark-par = "reexpastar.cli.benchmark_parallel:main"
 reexpastar-plot = "reexpastar.cli.plot_results:main"
 reexpastar-profile = "reexpastar.cli.profile_search:main"
-
-[tool.black]
-line-length = 100
-target-version = ["py39"]
 
 [tool.isort]
 profile = "black"

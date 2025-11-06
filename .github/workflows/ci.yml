@@ -23,7 +23,7 @@ jobs:
           pip install .[dev]
       - name: Lint
         run: |
-          black --check .
+          PYTHONPATH=src pylint --rcfile=.pylintrc src tests
       - name: Type check
         run: mypy src
       - name: Tests

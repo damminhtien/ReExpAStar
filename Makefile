@@ -4,7 +4,6 @@ SRC := src tests
 
 PYLINT := $(PY) -m pylint
 ISORT := $(PY) -m isort
-BLACK := $(PY) -m black
 
 .PHONY: lint fix imports fmt _imports_with_isort
 
@@ -23,6 +22,5 @@ _imports_with_isort:
 # ========== FULL AUTO-FIX ==========
 fix:
 	$(MAKE) imports
-	$(BLACK) $(SRC)
 
 fmt: fix
