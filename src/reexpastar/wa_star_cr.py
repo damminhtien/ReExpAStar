@@ -87,10 +87,10 @@ class ProposedUpdate(Generic[State]):
 class WeightedAStarCR(Generic[State]):  # pylint: disable=too-many-instance-attributes,too-many-arguments
     """Weighted A* with Conditional Re-expansion threshold r.
 
-    r_mode:
-        - "abs": reopen if Δg > r
-        - "rel_edge": reopen if Δg > r * (edge cost)
-        - "rel_g": reopen if Δg > r * max(1, old_g)
+    r_mode options:
+        "abs": reopen if Δg > r
+        "rel_edge": reopen if Δg > r * (edge cost)
+        "rel_g": reopen if Δg > r * max(1, old_g)
     """
 
     def __init__(
