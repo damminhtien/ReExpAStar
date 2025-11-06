@@ -1,16 +1,16 @@
 import argparse
 import csv
+import importlib
 from typing import Any
 
 PLT: Any | None
 IMPORT_ERROR: Exception | None
 try:
-    import matplotlib.pyplot as _plt
+    PLT = importlib.import_module("matplotlib.pyplot")
 except ImportError as exc:  # pragma: no cover
     PLT = None
     IMPORT_ERROR = exc
 else:
-    PLT = _plt
     IMPORT_ERROR = None
 
 
