@@ -11,4 +11,4 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.10" }
       - run: pip install pylint
-      - run: pylint --rcfile=.pylintrc your_project tests
+      - run: PYTHONPATH=src pylint --rcfile=.pylintrc src/reexpastar tests
