@@ -14,14 +14,14 @@ pre-commit install
 ## Style & checks
 
 - Formatting: `black` (line length 100) + `isort` (black profile)
-- Lint: `ruff`
+- Lint: `pylint`
 - Types: `mypy`
 - Tests: `pytest` or `unittest` + coverage
 
 Run all locally:
 
 ```bash
-black --check . && mypy src && pytest -q
+black --check . && pylint --rcfile=.pylintrc src tests && mypy src && pytest -q
 ```
 
 ## Pull requests

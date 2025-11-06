@@ -20,7 +20,7 @@ classifiers = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest", "pytest-cov", "mypy", "ruff", "black", "pre-commit"]
+dev = ["pytest", "pytest-cov", "mypy", "black", "pre-commit"]
 plot = ["matplotlib"]
 
 [project.urls]
@@ -38,27 +38,6 @@ reexpastar-profile = "reexpastar.cli.profile_search:main"
 [tool.black]
 line-length = 100
 target-version = ["py39"]
-
-[tool.ruff]
-line-length = 100
-# Lint + import sorting + modernizations + bugbears
-lint.select = ["E","F","I","UP","B"]
-lint.ignore = []
-# Ignore common test conveniences (adjust to taste)
-lint.per-file-ignores = { "tests/**" = ["S101","PLR2004"] }
-
-# Import sorting rules
-[tool.ruff.lint.isort]
-known-first-party = ["your_project"]
-combine-as-imports = true
-force-sort-within-sections = true
-
-# Formatter (Black-compatible)
-[tool.ruff.format]
-quote-style = "double"
-indent-style = "space"
-line-ending = "auto"
-docstring-code-format = true
 
 [tool.isort]
 profile = "black"

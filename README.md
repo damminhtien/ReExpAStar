@@ -5,7 +5,7 @@ Orginated from my research "A_r\*: a Bounded Suboptimal Search algorithm using C
 [![CI](https://github.com/damminhtien/reexpastar/actions/workflows/ci.yml/badge.svg)](https://github.com/damminhtien/reexpastar/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.9%20|%203.10%20|%203.11%20|%203.12-blue)](#)
-[![Lint: Ruff](https://img.shields.io/badge/lint-ruff-46b2a1.svg)](#)
+[![Lint: pylint](https://img.shields.io/badge/lint-pylint-306998.svg)](#)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](#)
 [![Typing: mypy](https://img.shields.io/badge/typing-mypy-4F8EF7.svg)](#)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](#)
