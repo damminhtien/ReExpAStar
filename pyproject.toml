@@ -20,7 +20,7 @@ classifiers = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest", "pytest-cov", "mypy", "pre-commit"]
+dev = ["pytest", "pytest-cov", "mypy", "pylint", "pre-commit"]
 plot = ["matplotlib"]
 
 [project.urls]
