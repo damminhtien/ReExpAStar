@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: "ReExpAStar: Weighted A* with Conditional Re-expansion (CR), NR, AR & ARA*"
+title: "A_r*: a Bounded Suboptimal Search algorithm using Conditional Node Re-expansion Policy"
 authors:
   - family-names: "Dam"
     given-names: "Tien Minh"

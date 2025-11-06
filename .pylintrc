@@ -1,0 +1,30 @@
+[MASTER]
+ignore=venv,.venv,build,dist,.git
+py-version=3.10
+jobs=0
+load-plugins=pylint.extensions.typing
+
+[MESSAGES CONTROL]
+disable=
+    C0114,  ; missing-module-docstring (enable later if you want)
+    C0115,  ; missing-class-docstring
+    C0116,  ; missing-function-docstring
+    R0903,  ; too-few-public-methods (common for dataclasses/DTOs)
+    R0801   ; duplicate-code (enable once code stabilizes)
+
+[FORMAT]
+max-line-length=100
+expected-line-ending-format=LF
+
+[TYPECHECK]
+ignore-mixin-members=yes
+
+[REPORTS]
+score=yes
+
+[DESIGN]
+max-args=8
+max-attributes=12
+max-branches=15
+max-locals=25
+max-returns=6

@@ -1,36 +1,53 @@
-import argparse, csv
-import matplotlib.pyplot as plt
+import argparse
+import csv
+from typing import Any
+
+PLT: Any | None
+IMPORT_ERROR: Exception | None
+try:
+    import matplotlib.pyplot as _plt
+except ImportError as exc:  # pragma: no cover
+    PLT = None
+    IMPORT_ERROR = exc
+else:
+    PLT = _plt
+    IMPORT_ERROR = None
 
 
-def load_rows(path):
-    rows = []
-    with open(path, newline="") as f:
+def load_rows(path: str) -> list[dict[str, str]]:
+    rows: list[dict[str, str]] = []
+    with open(path, newline="", encoding="utf-8") as f:
         r = csv.DictReader(f)
         for row in r:
-            rows.append(row)
+            rows.append(dict(row))
     return rows
 
 
 def main():
+    if PLT is None:
+        assert IMPORT_ERROR is not None
+        raise RuntimeError("matplotlib is required to plot results") from IMPORT_ERROR
     p = argparse.ArgumentParser(description="Plot benchmark CSV: runtime vs reopens by scenario")
     p.add_argument("csv", help="CSV file from benchmark")
     args = p.parse_args()
     rows = load_rows(args.csv)
+    assert PLT is not None
     scenarios = sorted(set(r["scenario"] for r in rows))
     for sc in scenarios:
         sub = [r for r in rows if r["scenario"] == sc]
-        plt.figure()
+        PLT.figure()
         x = [float(r["reopens"] or 0) for r in sub]
         y = [float(r["runtime_ms"] or 0) if r["runtime_ms"] != "None" else 0.0 for r in sub]
         labels = [r["algo"] for r in sub]
-        plt.scatter(x, y)
-        for xi, yi, lab in zip(x, y, labels):
-            plt.annotate(lab, (xi, yi))
-        plt.xlabel("Reopens")
-        plt.ylabel("Runtime (ms)")
-        plt.title(sc)
+        assert PLT is not None  # kept narrow scope for type checkers
+        PLT.scatter(x, y)
+        for xi, yi, lab in zip(x, y, labels, strict=False):
+            PLT.annotate(lab, (xi, yi))
+        PLT.xlabel("Reopens")
+        PLT.ylabel("Runtime (ms)")
+        PLT.title(sc)
         out_png = args.csv.replace(".csv", f"_{sc}.png")
-        plt.savefig(out_png, bbox_inches="tight")
+        PLT.savefig(out_png, bbox_inches="tight")
         print(out_png)
 
 

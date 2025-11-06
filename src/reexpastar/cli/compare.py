@@ -1,5 +1,6 @@
 import argparse
-from reexpastar.wa_star_cr import compare_on_grid  # type: ignore[attr-defined]
+
+from reexpastar.wa_star_cr import compare_on_grid
 
 
 def main():

@@ -1,4 +1,8 @@
-import argparse, cProfile, pstats, io
+import argparse
+import cProfile
+import io
+import pstats
+
 from reexpastar.scenarios import scenario_grid_inconsistent
 from reexpastar.wa_star_cr import WeightedAStarAR
 

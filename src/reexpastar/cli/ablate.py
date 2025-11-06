@@ -1,6 +1,15 @@
 import argparse
 import math
-from reexpastar.wa_star_cr import WeightedAStarCR, WeightedAStarNR, WeightedAStarAR, Grid
+from typing import cast
+
+from reexpastar.core.types import GoalTest, NeighborFn
+from reexpastar.wa_star_cr import (
+    Grid,
+    WeightedAStarAR,
+    WeightedAStarCR,
+    WeightedAStarNR,
+    WeightedAStarParams,
+)
 
 
 def parse_r_list(s: str):
@@ -31,31 +40,40 @@ def main():
     start, goal = (0, 0), (args.width - 1, args.height - 1)
     h = grid.manhattan(goal)
 
-    def is_goal(s):
+    def is_goal(s: tuple[int, int]) -> bool:
         return s == goal
+
+    goal_test = cast(GoalTest[tuple[int, int]], is_goal)
+    neighbor_fn = cast(NeighborFn[tuple[int, int]], grid.neighbors)
 
     def emit_row(name, eng):
         path, cost, st = eng.run_to_first_goal()
-        row = dict(
-            algo=name,
-            w=eng.w,
-            r=getattr(eng, "r", None),
-            r_mode=getattr(eng, "r_mode", None),
-            cost=cost,
-            expansions=st.expansions,
-            reopens=st.reopens,
-            generated=st.generated,
-            runtime_ms=st.runtime_ms,
-            path_len=(len(path) if path else None),
-        )
+        row = {
+            "algo": name,
+            "w": eng.w,
+            "r": getattr(eng, "r", None),
+            "r_mode": getattr(eng, "r_mode", None),
+            "cost": cost,
+            "expansions": st.expansions,
+            "reopens": st.reopens,
+            "generated": st.generated,
+            "runtime_ms": st.runtime_ms,
+            "path_len": (len(path) if path else None),
+        }
         return row
 
     rows = []
     rows.append(
-        emit_row("NR", WeightedAStarNR(start, is_goal, grid.neighbors, h, weight=args.weight))
+        emit_row(
+            "NR",
+            WeightedAStarNR[tuple[int, int]](start, goal_test, neighbor_fn, h, weight=args.weight),
+        )
     )
     rows.append(
-        emit_row("AR", WeightedAStarAR(start, is_goal, grid.neighbors, h, weight=args.weight))
+        emit_row(
+            "AR",
+            WeightedAStarAR[tuple[int, int]](start, goal_test, neighbor_fn, h, weight=args.weight),
+        )
     )
     for r in r_list:
         if math.isinf(r):
@@ -63,8 +81,12 @@ def main():
         rows.append(
             emit_row(
                 f"CR(r={r})",
-                WeightedAStarCR(
-                    start, is_goal, grid.neighbors, h, weight=args.weight, r=r, r_mode=args.r_mode
+                WeightedAStarCR[tuple[int, int]](
+                    start,
+                    goal_test,
+                    neighbor_fn,
+                    h,
+                    params=WeightedAStarParams(weight=args.weight, r=r, r_mode=args.r_mode),
                 ),
             )
         )

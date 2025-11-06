@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Weighted A* variants with conditional re-expansion (CR), NR, AR, and ARA*; with benchmarks & scenarios."
 readme = "README.md"
 license = { file = "LICENSE" }
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 authors = [{ name = "Tien Minh Dam" }]
 keywords = ["search", "path-planning", "A*", "ARA*", "heuristics", "benchmark"]
 classifiers = [
@@ -41,14 +41,30 @@ target-version = ["py39"]
 
 [tool.ruff]
 line-length = 100
-select = ["E", "F", "I", "W"]
-ignore = ["E501"]  # let black handle line length
+# Lint + import sorting + modernizations + bugbears
+lint.select = ["E","F","I","UP","B"]
+lint.ignore = []
+# Ignore common test conveniences (adjust to taste)
+lint.per-file-ignores = { "tests/**" = ["S101","PLR2004"] }
+
+# Import sorting rules
+[tool.ruff.lint.isort]
+known-first-party = ["your_project"]
+combine-as-imports = true
+force-sort-within-sections = true
+
+# Formatter (Black-compatible)
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+docstring-code-format = true
 
 [tool.isort]
 profile = "black"
 
 [tool.mypy]
-python_version = "3.9"
+python_version = "3.10"
 ignore_missing_imports = true
 strict = false
 warn_unused_ignores = true
